@@ -62,7 +62,7 @@ export default function ExplorePage() {
           <div>
             <p className="font-heading font-bold text-sm text-error">
               {criticalCount} state{criticalCount > 1 ? "s" : ""} at critical
-              resistance — standard LLINs are failing
+              resistance. The standard LLINs are failing.
             </p>
             <p className="text-xs text-base-content/55 mt-1">
               Immediate upgrade to PBO or Dual-AI nets is required in{" "}

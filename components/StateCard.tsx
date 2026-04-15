@@ -22,7 +22,7 @@ export default function StateCard({ state, className = "" }: Props) {
   const recConfig = getRecommendationConfig(state.recommendation_level);
 
   return (
-    <Link href={`/results/${state.id}`} className="block group">
+    <Link href={`/results/${state.state}`} className="block group">
       <div
         className={[
           "card bg-base-200 border border-base-300 h-full",

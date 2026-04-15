@@ -9,7 +9,7 @@ const PrintButton = () => {
       className="btn btn-ghost btn-sm gap-2 text-base-content/65 hover:text-base-content"
       aria-label="Print"
     >
-      <Printer size={15} />
+      <Printer size={15} className="hidden sm:block " />
       <span className="hidden sm:block text-xs">Print This Report</span>
     </button>
   );

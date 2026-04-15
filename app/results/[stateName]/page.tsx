@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   ALL_STATES,
-  getStateById,
+  getStateByName,
   getSiblingStates,
   formatFrequency,
   getResistanceLevelLabel,
@@ -28,16 +28,16 @@ import {
 } from "lucide-react";
 
 interface Props {
-  params: Promise<{ stateId: string }>;
+  params: Promise<{ stateName: string }>;
 }
 
 export async function generateStaticParams() {
-  return ALL_STATES.map((s) => ({ stateId: s.id.toString() }));
+  return ALL_STATES.map((s) => ({ stateName: s.state.toLowerCase() }));
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { stateId } = await params;
-  const state = getStateById(parseInt(stateId));
+  const { stateName } = await params;
+  const state = getStateByName(stateName);
   if (!state) return { title: "State Not Found — VectoSense" };
   return {
     title: `${state.state} Resistance Profile — VectoSense`,
@@ -46,8 +46,8 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function ResultsPage({ params }: Props) {
-  const { stateId } = await params;
-  const state = getStateById(parseInt(stateId));
+  const { stateName } = await params;
+  const state = getStateByName(decodeURIComponent(stateName));
   if (!state) notFound();
 
   // Prev / next navigation through sorted ALL_STATES
@@ -310,7 +310,7 @@ export default async function ResultsPage({ params }: Props) {
                     {siblings.map((sib) => (
                       <Link
                         key={sib.id}
-                        href={`/results/${sib.id}`}
+                        href={`/results/${sib.state}`}
                         className="flex items-center gap-3 rounded-xl px-4 py-3 bg-base-300/50 hover:bg-base-300 transition-colors group"
                       >
                         <div className="flex-1 flex items-center gap-3">
@@ -445,11 +445,11 @@ export default async function ResultsPage({ params }: Props) {
           </div>
         </div>
 
-        {/* ── State navigation ──────────────────────────────────── */}
+        {/* State navigation */}
         <div className="flex items-center justify-between pt-10 border-t border-base-300 no-print animate-fade-up delay-500">
           {prev ? (
             <Link
-              href={`/results/${prev.id}`}
+              href={`/results/${prev.state.toLowerCase()}`}
               className="flex items-center gap-3 group hover:text-primary transition-colors"
             >
               <ArrowLeft
@@ -478,7 +478,7 @@ export default async function ResultsPage({ params }: Props) {
 
           {next ? (
             <Link
-              href={`/results/${next.id}`}
+              href={`/results/${next.state.toLowerCase()}`}
               className="flex items-center gap-3 group hover:text-primary transition-colors text-right"
             >
               <div>

@@ -1,7 +1,6 @@
 import regionsJson from "./regions.json";
 import resistanceJson from "./resistance_data.json";
 
-// ── Types (strict — only fields that exist in the JSONs) ─────────────────────
 
 export type NormalisedResistanceLevel = "moderate" | "high" | "very-high";
 export type RecommendationLevel = "urgent" | "monitor" | "critical";
@@ -26,8 +25,6 @@ export interface GeopoliticalZone {
   states: { name: string }[];
 }
 
-// ── Build state → zone lookup from regions.json ──────────────────────────────
-
 const stateToZone = new Map<string, string>();
 for (const zone of regionsJson.regions) {
   for (const s of zone.states) {
@@ -35,15 +32,13 @@ for (const zone of regionsJson.regions) {
   }
 }
 
-// ── Normalise the raw resistance_level string ────────────────────────────────
-
 function normalise(raw: string): NormalisedResistanceLevel {
   if (raw === "Very High") return "very-high";
   if (raw === "Moderate") return "moderate";
   return "high";
 }
 
-// ── Main merged dataset ───────────────────────────────────────────────────────
+// Main merged dataset
 
 export const ALL_STATES: StateResistanceData[] = resistanceJson.regions.map(
   (r) => ({
@@ -62,16 +57,14 @@ export const ALL_STATES: StateResistanceData[] = resistanceJson.regions.map(
   }),
 );
 
-// ── Zone data from regions.json ───────────────────────────────────────────────
 
 export const ALL_ZONES: GeopoliticalZone[] = regionsJson.regions;
 export const ZONE_NAMES: string[] = regionsJson.regions.map((z) => z.region);
 
-// ── Lookups ───────────────────────────────────────────────────────────────────
 
-export function getStateById(id: number): StateResistanceData | undefined {
-  return ALL_STATES.find((s) => s.id === id);
-}
+export const getStateByName = (name: string) => {
+  return ALL_STATES.find((s) => s.state.toLowerCase() === name.toLowerCase());
+};
 
 export function getStatesByZone(zone: string): StateResistanceData[] {
   return ALL_STATES.filter((s) => s.zone === zone);
@@ -85,7 +78,7 @@ export function getSiblingStates(
   return ALL_STATES.filter((s) => s.zone === zone && s.id !== excludeId);
 }
 
-// ── Formatters ────────────────────────────────────────────────────────────────
+// Formatters
 
 export function formatFrequency(value: number): string {
   return `${Math.round(value * 100)}%`;
@@ -166,7 +159,6 @@ export function getRecommendationConfig(level: RecommendationLevel) {
   }[level];
 }
 
-// ── Derived stats for landing page (from actual JSON data only) ───────────────
 
 export const STATS = {
   totalStates: ALL_STATES.length,

@@ -70,7 +70,7 @@ export default function LandingPage() {
             {criticalStates.map((state, i) => (
               <Link
                 key={state.id}
-                href={`/results/${state.id}`}
+                href={`/results/${state.state.toLowerCase()}`}
                 className="group bg-base-200 border border-base-300 hover:border-primary/50 rounded-xl p-4 flex items-center gap-4 transition-all duration-200 hover:-translate-x-1"
                 style={{ animationDelay: `${0.5 + i * 0.1}s` }}
               >
@@ -288,7 +288,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA  */}
-      <section className="py-24 max-w-6xl mx-auto px-4 text-center">
+      <section className="pt-24 max-w-6xl mx-auto px-4 text-center">
         <h2 className="font-heading text-4xl md:text-5xl font-black text-base-content mb-5">
           Your Region. Your Data.
           <br />
