@@ -1,0 +1,71 @@
+{
+  "regions": [
+    {
+      "region": "North Central",
+      "states": [
+        { "name": "Benue" },
+        { "name": "Kogi" },
+        { "name": "Kwara" },
+        { "name": "Nasarawa" },
+        { "name": "Niger" },
+        { "name": "Plateau" },
+        { "name": "Federal Capital Territory" }
+      ]
+    },
+    {
+      "region": "North East",
+      "states": [
+        { "name": "Adamawa" },
+        { "name": "Bauchi" },
+        { "name": "Borno" },
+        { "name": "Gombe" },
+        { "name": "Taraba" },
+        { "name": "Yobe" }
+      ]
+    },
+    {
+      "region": "North West",
+      "states": [
+        { "name": "Jigawa" },
+        { "name": "Kaduna" },
+        { "name": "Kano" },
+        { "name": "Katsina" },
+        { "name": "Kebbi" },
+        { "name": "Sokoto" },
+        { "name": "Zamfara" }
+      ]
+    },
+    {
+      "region": "South East",
+      "states": [
+        { "name": "Abia" },
+        { "name": "Anambra" },
+        { "name": "Ebonyi" },
+        { "name": "Enugu" },
+        { "name": "Imo" }
+      ]
+    },
+    {
+      "region": "South South",
+      "states": [
+        { "name": "Akwa Ibom" },
+        { "name": "Bayelsa" },
+        { "name": "Cross River" },
+        { "name": "Delta" },
+        { "name": "Edo" },
+        { "name": "Rivers" }
+      ]
+    },
+    {
+      "region": "South West",
+      "states": [
+        { "name": "Ekiti" },
+        { "name": "Lagos" },
+        { "name": "Ogun" },
+        { "name": "Ondo" },
+        { "name": "Osun" },
+        { "name": "Oyo" }
+      ]
+    }
+  ]
+}
